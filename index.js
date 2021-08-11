@@ -1,9 +1,12 @@
 $(document).ready(function(){
+
+    // banner owl carousel
     $("#banner-area .owl-carousel").owlCarousel({
         dots: true,
         items: 1
     });
 
+    // top sale owl carousel
     $("#top-sale .owl-carousel").owlCarousel({
         loop: true,
         nav: true,
@@ -31,10 +34,11 @@ $(document).ready(function(){
         $grid.isotope({ filter: filterValue});
     })
 
+
     $("#new-phones .owl-carousel").owlCarousel({
         loop: true,
         nav: false,
-        dots: false,
+        dots: true,
         responsive : {
             0: {
                 items: 1
@@ -61,4 +65,29 @@ $(document).ready(function(){
             }
         }
     })
+
+
+    let $qty_up = $(".qty .qty-up");
+    let $qty_down = $(".qty .qty-down");
+    // let $input = $(".qty .qty_input");
+
+    $qty_up.click(function(e){
+        let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
+        if($input.val() >= 1 && $input.val() <= 9){
+            $input.val(function(i, oldval){
+                return ++oldval;
+            });
+        }
+    });
+
+    $qty_down.click(function(e){
+        let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
+        if($input.val() > 1 && $input.val() <= 10){
+            $input.val(function(i, oldval){
+                return --oldval;
+            });
+        }
+    });
+
+
 });
